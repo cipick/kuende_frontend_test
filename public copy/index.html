@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Kuende</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="http://getbootstrap.com/examples/blog/blog.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body cz-shortcut-listen="true">
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">Home</a>
+          <a class="blog-nav-item" href="#news">News</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="blog-header">
+        <h1 class="blog-title">Kuende</h1>
+        <p class="lead blog-description">A new kind of social network</p>
+      </div>
+
+      <div class="row" id="main-region">
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <script type="text/template" id="home-template">
+      <div id="project-region"></div>
+      <div id="sidebar-region" class="col-sm-3 col-sm-offset-1 sidebar-module"></div>
+    </script>
+
+    <script type="text/template" id="project-template">
+      <% _.each(items, function(item){ %>
+        <h2 class="blog-post-title"><%= item.title %></h2>
+        <p><%= item.about %></p>
+      <% }); %>
+    </script>
+
+    <script type="text/template" id="sidebar-template">
+      <%= title %>
+    </script>
+
+    <script type="text/template" id="blog_post-template">
+      <h2 class="blog-post-title"><%= title %></h2>
+      <p><%= about %></p>
+    </script>
+
+    <script type="text/template" id="paginated-view">
+      <div class="js-pagination-controls text-center"></div>
+      <div class="js-pagination-main"></div>
+    </script>
+
+    <script type="text/template"id="pagination-controls">
+      <ul class="pagination">
+        <li><a class="navigatable" data-page="1" href="#">1</a></li>
+        <li><a class="navigatable" data-page="2" href="#">2</a></li>
+        <li><a class="navigatable" data-page="3" href="#">3</a></li>
+      </ul>
+    </script>
+
+    <script data-main="./js/require_main.js" src="./js/vendor/require.js"></script>
+  </body>
+</html>

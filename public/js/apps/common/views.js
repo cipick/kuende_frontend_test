@@ -1,62 +1,71 @@
-define(["app","apps/posts/list/list_view"], function(Kuende) {
-	Kuende.module("Common.Views", function(Views, Kuende, Backbone, Marionette, $, _){
-		Views.PaginatedView = Marionette.LayoutView.extend({
-			template: "#paginated-view",
+var __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-			regions: {
-				paginationControlsRegion: ".js-pagination-controls",
-				paginationMainRegion: ".js-pagination-main"
-			},
+define(["app", "apps/posts/list/list_view"], function(Kuende) {
+  return Kuende.module("Common.Views", function(Views, Kuende, Backbone, Marionette, $, _) {
+    var page;
+    Views.PaginatedView = (function(_super) {
+      __extends(PaginatedView, _super);
 
-			initialize: function(){
+      function PaginatedView() {
+        return PaginatedView.__super__.constructor.apply(this, arguments);
+      }
 
-				var collection = this.collection;
+      PaginatedView.prototype.template = "#paginated-view";
 
-				var controls = new Views.PaginationControls({
-					paginatedCollection: collection
-				});
+      PaginatedView.prototype.regions = {
+        paginationControlsRegion: ".js-pagination-controls",
+        paginationMainRegion: ".js-pagination-main"
+      };
 
-				// posts
-				var listView = new Kuende.PostsApp.List.Posts({
-					collection: collection
-				});
+      PaginatedView.prototype.initialize = function() {
+        var controls, listView;
+        controls = new Views.PaginationControls;
+        ({
+          paginatedCollection: this.collection
+        });
+        listView = new Kuende.PostsApp.List.Post({
+          collection: this.collection
+        });
+        this.listenTo(controls, "page:change", function(page) {
+          collection.getPage(page);
+          return Kuende.navigate("#news/page/" + (page + 1));
+        });
+        return this.on("show", function() {
+          this.paginationControlsRegion.show(controls);
+          return this.paginationMainRegion.show(listView);
+        });
+      };
 
-			// 	// listen for controls event
-				var self = this;
-				this.listenTo(controls, "page:change", function(page){
-			    collection.getPage(page);
-			    Kuende.navigate("#news/page/" + (page+1));
-		    });
+      return PaginatedView;
 
-				this.on("show", function(){
-					this.paginationControlsRegion.show(controls);
-					this.paginationMainRegion.show(listView);
-				})
-			}
-		});
+    })(Marionette.LayoutView);
+    Views.PaginationControls = (function(_super) {
+      __extends(PaginationControls, _super);
 
-		Views.PaginationControls = Marionette.ItemView.extend({
-			template: "#pagination-controls",
-			className: "pagination",
+      function PaginationControls() {
+        return PaginationControls.__super__.constructor.apply(this, arguments);
+      }
 
-			initialize: function(options){
+      PaginationControls.prototype.template = "#pagination-controls";
 
-				this.paginatedCollection = options.paginatedCollection;
+      PaginationControls.prototype.className = "pagination";
 
-			},
+      PaginationControls.prototype.initialize = function(options) {
+        return this.paginatedCollection = options.paginatedCollection;
+      };
 
-			events: {
-				"click a[class=navigatable]": "navigateToPage"
-			},
+      PaginationControls.prototype.events = {
+        "click a[class=navigatable]": "navigateToPage"
+      };
 
-			navigateToPage: function(e){
-				e.preventDefault();
-				var page = parseInt($(e.target).data("page"), 10);
+      PaginationControls.prototype.navigateToPage = function(e) {};
 
-				// send event to paginated view
-				this.trigger("page:change", page-1);
-			}
+      return PaginationControls;
 
-		});
-	});
+    })(Marionette.ItemView);
+    e.preventDefault();
+    page = parseInt($(e.target).data("page"), 10);
+    return this.trigger("page:change", page - 1);
+  });
 });
