@@ -5,15 +5,16 @@ define ["app"], (Kuende) ->
 			appRoutes:
 				"": "arhivePosts"
 				"news": "listPosts"
+				"news/page/:page": "listPosts"
 
 		API =
-			listPosts: ->
-				require ['apps/posts/list/list_controller'], ->
-					PostsApp.List.Controller.listPosts();
+			listPosts: (page) ->
+				require ['apps/posts/list/list_controller'], () ->
+					PostsApp.List.Controller.listPosts(page);
 
-		  arhivePosts: ->
-		    require ['apps/posts/arhive/arhive_controller'], ->
-		     	PostsApp.Arhive.Controller.arhivePosts()
+			arhivePosts: ->
+				require ['apps/posts/arhive/arhive_controller'], () ->
+					PostsApp.Arhive.Controller.arhivePosts()
 
 		Kuende.on "posts:list", ->
 			Kuende.navigate("news")
@@ -25,4 +26,4 @@ define ["app"], (Kuende) ->
 
 		Kuende.addInitializer ->
 			new PostsApp.Router
-		    controller: API
+				controller: API

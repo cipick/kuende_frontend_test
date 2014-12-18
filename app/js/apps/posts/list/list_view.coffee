@@ -1,4 +1,4 @@
-define ["app","apps/entities/post"], Kuende ->
+define ["app","apps/entities/post"], (Kuende) ->
 	Kuende.module "PostsApp.List", (List, Kuende, Backbone,Marionette,$,_) ->
 
 		class List.Post extends Marionette.ItemView

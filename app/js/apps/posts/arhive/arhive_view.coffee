@@ -1,4 +1,4 @@
-define ["app","apps/entities/post"], Kuende ->
+define ["app","apps/entities/post"], (Kuende) ->
   Kuende.module "PostsApp.Arhive", (Arhive, Kuende, Backbone, Marionette, $, _) ->
     class Arhive.Layout extends Marionette.LayoutView
       template: "#home-template"

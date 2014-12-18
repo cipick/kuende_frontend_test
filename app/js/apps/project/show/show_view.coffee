@@ -1,8 +1,12 @@
-define ["app","apps/entities/project"], (Kuende) ->
+define [
+  "app"
+  "apps/entities/project"
+], (Kuende) ->
+  Kuende.module "ProjectApp.Show", (Show, Kuende, Backbone, Marionette, $, _) ->
+    Show.Project = Marionette.ItemView.extend(
+      template: "#project-template"
+      className: "blog-main col-sm-8"
+    )
+    return
 
-	Kuende.module "ProjectApp.Show", ( Show, Kuende, Backbone, Marionette, $, _) ->
-	  class Show.Project extends Marionette.ItemView
-	    template: "#project-template"
-	    className: "blog-main col-sm-8"
-
-	Kuende.ProjectApp.Show
+  Kuende.ProjectApp.Show

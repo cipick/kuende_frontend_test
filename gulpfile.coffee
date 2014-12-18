@@ -1,5 +1,6 @@
 gulp = require('gulp')
 gutil = require('gulp-util')
+watch = require('gulp-watch')
 # Styles
 stylus = require('gulp-stylus')
 nib = require('nib')

@@ -13,24 +13,23 @@ define(["app"], function(Kuende) {
 
       Router.prototype.appRoutes = {
         "": "arhivePosts",
-        "news": "listPosts"
+        "news": "listPosts",
+        "news/page/:page": "listPosts"
       };
 
       return Router;
 
     })(Marionette.AppRouter);
     API = {
-      listPosts: function() {
-        require(['apps/posts/list/list_controller'], function() {
-          return PostsApp.List.Controller.listPosts();
+      listPosts: function(page) {
+        return require(['apps/posts/list/list_controller'], function() {
+          return PostsApp.List.Controller.listPosts(page);
         });
-        return {
-          arhivePosts: function() {
-            return require(['apps/posts/arhive/arhive_controller'], function() {
-              return PostsApp.Arhive.Controller.arhivePosts();
-            });
-          }
-        };
+      },
+      arhivePosts: function() {
+        return require(['apps/posts/arhive/arhive_controller'], function() {
+          return PostsApp.Arhive.Controller.arhivePosts();
+        });
       }
     };
     Kuende.on("posts:list", function() {

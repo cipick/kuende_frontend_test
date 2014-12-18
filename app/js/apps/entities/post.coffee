@@ -15,9 +15,9 @@ define ["app","pageablecollection"], (Kuende) ->
         currentPage: null
         pageSize: null
         start: ->
-          @.state.currentPage * 10
+          @state.currentPage * 10
         limit: ->
-          @.state.pageSize
+          @state.pageSize
     API =
       getPostEntities: (options) ->
         posts = new Entities.PageableCollection()
