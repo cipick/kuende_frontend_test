@@ -8,9 +8,6 @@ define ["app"], (Kuende) ->
     API = getPostEntities: ->
 
       # i think i should use Entities.Project but i had a problem with the template
-      project = new Entities.ProjectCollection()
-      defer = $.Deferred()
-      project.fetch success: (data) ->
         defer.resolve data
         return
 
