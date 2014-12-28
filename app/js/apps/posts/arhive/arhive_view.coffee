@@ -6,9 +6,7 @@ define ["app","apps/entities/post"], (Kuende) ->
         projectRegion: "#project-region"
         sidebarRegion: "#sidebar-region"
 
-    class Arhive.Post extends Marionette.ItemView
-      tagName: 'li'
-      template: "#sidebar-template"
+
 
     class Arhive.Posts extends Marionette.CollectionView
       tagName: 'ol'
